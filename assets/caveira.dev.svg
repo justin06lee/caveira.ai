@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700" role="img" aria-labelledby="t">
+  <title id="t">caveira.dev</title>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="38%" r="40%">
+      <stop offset="0" stop-color="#ff7a3d" stop-opacity="0.42"/>
+      <stop offset="0.5" stop-color="#9e2a16" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#0c0806" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="horizon" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffb070" stop-opacity="0.9"/>
+      <stop offset="0.22" stop-color="#ff7a3d" stop-opacity="0.55"/>
+      <stop offset="0.6" stop-color="#8a2412" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#0c0806" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="tile"><rect width="900" height="700" rx="56"/></clipPath>
+  </defs>
+  <g clip-path="url(#tile)">
+    <rect width="900" height="700" fill="#0c0806"/>
+    <rect width="900" height="700" fill="url(#glow)"/>
+    <ellipse cx="450" cy="760" rx="560" ry="260" fill="url(#horizon)"/>
+    <g fill="#ffb27a"><circle cx="334" cy="419" r="2.8" opacity="0.14"/><circle cx="474" cy="475" r="1.5" opacity="0.34"/><circle cx="145" cy="493" r="1.6" opacity="0.2"/><circle cx="400" cy="595" r="1.7" opacity="0.34"/><circle cx="534" cy="626" r="2.7" opacity="0.47"/><circle cx="764" cy="392" r="3.3" opacity="0.17"/><circle cx="215" cy="411" r="2.1" opacity="0.34"/><circle cx="239" cy="531" r="2.8" opacity="0.35"/><circle cx="482" cy="396" r="1.5" opacity="0.16"/><circle cx="569" cy="491" r="2.1" opacity="0.39"/><circle cx="419" cy="458" r="3.1" opacity="0.38"/><circle cx="281" cy="529" r="2.6" opacity="0.57"/><circle cx="601" cy="455" r="3.6" opacity="0.18"/><circle cx="396" cy="577" r="1.7" opacity="0.46"/><circle cx="146" cy="554" r="3.1" opacity="0.47"/><circle cx="698" cy="462" r="2.9" opacity="0.35"/><circle cx="503" cy="499" r="3.2" opacity="0.54"/><circle cx="433" cy="553" r="1.5" opacity="0.53"/><circle cx="547" cy="638" r="3.2" opacity="0.42"/><circle cx="375" cy="554" r="1.4" opacity="0.42"/><circle cx="231" cy="410" r="1.5" opacity="0.32"/><circle cx="205" cy="444" r="2.3" opacity="0.41"/><circle cx="173" cy="497" r="2.6" opacity="0.51"/><circle cx="661" cy="605" r="2.0" opacity="0.46"/><circle cx="357" cy="610" r="3.5" opacity="0.32"/><circle cx="236" cy="440" r="1.9" opacity="0.28"/></g>
+  </g>
+  <g transform="translate(450 250) scale(0.34) translate(-505 -505)">
+    <path fill="#f3ebe2" d="M622.572 233.779 C680.572 245.445 732.572 284.779 758.905 349.445 C785.238 414.112 785.905 504.112 774.572 583.445 C763.238 662.779 739.905 731.445 685.905 766.112 C631.905 800.779 547.238 801.445 463.572 777.112 C379.905 752.779 297.238 703.445 262.572 643.112 C227.905 582.779 241.238 511.445 278.238 444.779 C315.238 378.112 375.905 316.112 438.238 277.112 C500.572 238.112 564.572 222.112 622.572 233.779Z"/>
+  </g>
+  <text x="450" y="468" text-anchor="middle" fill="#f3ebe2" font-family="Poppins, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="600" letter-spacing="-3.5">caveira<tspan fill="#a8978a">.dev</tspan></text>
+</svg>

@@ -1,0 +1,66 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace;
+
+  /* Burnt paper and embers: the paintings carry the colour, the page stays
+     out of their way. */
+  --color-ink: #0c0806;
+  --color-coal: #16100c;
+  --color-ash: #f3ebe2;
+  --color-smoke: #a8978a;
+  --color-cinder: #6f6158;
+  --color-ember: #ff7a3d;
+}
+
+html {
+  background: var(--color-ink);
+  color: var(--color-ash);
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-ember) 45%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-ember) 70%, transparent);
+  outline-offset: 2px;
+}
+
+/* The hero painting settles in, the words rise after it. */
+@keyframes settle {
+  from {
+    transform: scale(1.06);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes rise {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+.settle {
+  animation: settle 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.rise {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .settle,
+  .rise {
+    animation: none;
+  }
+}
