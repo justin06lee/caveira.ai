@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="assets/caveira.dev.svg" alt="caveira.dev" width="330" />
+<img src="assets/caveira.ai.svg" alt="caveira.ai" width="330" />
 
-# caveira.dev
+# caveira.ai
 
 **The website for caveira, and the account its clients sign in to.**<br>
 *Plans, payments, and the model proxy that keeps the key off your machine.*

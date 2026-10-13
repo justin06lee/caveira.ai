@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700" role="img" aria-labelledby="t">
-  <title id="t">caveira.dev</title>
+  <title id="t">caveira.ai</title>
   <defs>
     <radialGradient id="glow" cx="50%" cy="38%" r="40%">
       <stop offset="0" stop-color="#ff7a3d" stop-opacity="0.42"/>
@@ -23,5 +23,5 @@
   <g transform="translate(450 250) scale(0.34) translate(-505 -505)">
     <path fill="#f3ebe2" d="M622.572 233.779 C680.572 245.445 732.572 284.779 758.905 349.445 C785.238 414.112 785.905 504.112 774.572 583.445 C763.238 662.779 739.905 731.445 685.905 766.112 C631.905 800.779 547.238 801.445 463.572 777.112 C379.905 752.779 297.238 703.445 262.572 643.112 C227.905 582.779 241.238 511.445 278.238 444.779 C315.238 378.112 375.905 316.112 438.238 277.112 C500.572 238.112 564.572 222.112 622.572 233.779Z"/>
   </g>
-  <text x="450" y="468" text-anchor="middle" fill="#f3ebe2" font-family="Poppins, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="600" letter-spacing="-3.5">caveira<tspan fill="#a8978a">.dev</tspan></text>
+  <text x="450" y="468" text-anchor="middle" fill="#f3ebe2" font-family="Poppins, 'Helvetica Neue', Arial, sans-serif" font-size="78" font-weight="600" letter-spacing="-3.5">caveira<tspan fill="#a8978a">.ai</tspan></text>
 </svg>
