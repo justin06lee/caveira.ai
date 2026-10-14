@@ -50,54 +50,70 @@ export function PlanGrid({ plans, current, pick }: Props) {
     return paidNow ? 'Switch' : 'Subscribe';
   }
 
+  // Laid out as the desktop app lays out its plans: Free across the top,
+  // the middle weights side by side, Champion across the bottom.
+  const free = plans.find((p) => p.price === 0);
+  const top = plans[plans.length - 1];
+  const middle = plans.filter((p) => p !== free && p !== top);
+
+  function card(plan: Plan, wide = false) {
+    const popular = plan.id === POPULAR;
+    const picked = plan.id === pick;
+    const isCurrent = plan.id === current;
+    return (
+      <div
+        key={plan.id}
+        className={`relative flex flex-col rounded-[22px] border bg-coal/80 p-6 ${
+          // The row's three columns, so a wide card's features and button
+          // sit under the middle cards' own.
+          wide ? 'sm:grid sm:grid-cols-3 sm:items-center sm:gap-x-[60px]' : ''
+        } ${picked ? 'border-ash/50' : popular ? 'border-ember/35' : 'border-white/[0.07]'}`}
+      >
+        <div>
+          <div className="flex items-center justify-between">
+            <h2 className="text-[15px] font-medium">{plan.name}</h2>
+            {popular && <span className="text-[11px] font-medium text-ember">Popular</span>}
+          </div>
+          <p className="mt-4 flex items-baseline gap-1">
+            <span className="text-[34px] font-semibold leading-none tracking-[-0.04em]">${plan.price}</span>
+            <span className="text-[12.5px] text-smoke">/ month</span>
+          </p>
+        </div>
+        <ul className={`mt-6 flex-1 space-y-2.5 text-[13px] leading-snug text-ash/85 ${wide ? 'sm:mt-0' : ''}`}>
+          {plan.features.map((f) => (
+            <li key={f} className="flex gap-2.5">
+              <Check size={14} className="mt-[3px] shrink-0 text-smoke" />
+              <span>{keepWhole(f)}</span>
+            </li>
+          ))}
+        </ul>
+        <button
+          type="button"
+          disabled={isCurrent || busy !== null}
+          onClick={() => choose(plan)}
+          className={`mt-7 inline-flex h-10 items-center justify-center gap-2 rounded-full text-[13px] font-medium transition disabled:cursor-default ${
+            wide ? 'sm:mt-0' : ''
+          } ${
+            isCurrent
+              ? 'bg-white/[0.05] text-smoke'
+              : popular || picked
+                ? 'bg-ash text-ink hover:bg-white'
+                : 'bg-white/[0.08] text-ash hover:bg-white/[0.14]'
+          }`}
+        >
+          {busy === plan.id && <LoaderCircle size={14} className="animate-spin" />}
+          {label(plan)}
+        </button>
+      </div>
+    );
+  }
+
   return (
     <>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-        {plans.map((plan) => {
-          const popular = plan.id === POPULAR;
-          const picked = plan.id === pick;
-          const isCurrent = plan.id === current;
-          return (
-            <div
-              key={plan.id}
-              className={`relative flex flex-col rounded-[22px] border bg-coal/80 p-6 ${
-                picked ? 'border-ash/50' : popular ? 'border-ember/35' : 'border-white/[0.07]'
-              }`}
-            >
-              <div className="flex items-center justify-between">
-                <h2 className="text-[15px] font-medium">{plan.name}</h2>
-                {popular && <span className="text-[11px] font-medium text-ember">Popular</span>}
-              </div>
-              <p className="mt-4 flex items-baseline gap-1">
-                <span className="text-[34px] font-semibold leading-none tracking-[-0.04em]">${plan.price}</span>
-                <span className="text-[12.5px] text-smoke">/ month</span>
-              </p>
-              <ul className="mt-6 flex-1 space-y-2.5 text-[13px] leading-snug text-ash/85">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex gap-2.5">
-                    <Check size={14} className="mt-[3px] shrink-0 text-smoke" />
-                    <span>{keepWhole(f)}</span>
-                  </li>
-                ))}
-              </ul>
-              <button
-                type="button"
-                disabled={isCurrent || busy !== null}
-                onClick={() => choose(plan)}
-                className={`mt-7 inline-flex h-10 items-center justify-center gap-2 rounded-full text-[13px] font-medium transition disabled:cursor-default ${
-                  isCurrent
-                    ? 'bg-white/[0.05] text-smoke'
-                    : popular || picked
-                      ? 'bg-ash text-ink hover:bg-white'
-                      : 'bg-white/[0.08] text-ash hover:bg-white/[0.14]'
-                }`}
-              >
-                {busy === plan.id && <LoaderCircle size={14} className="animate-spin" />}
-                {label(plan)}
-              </button>
-            </div>
-          );
-        })}
+      <div className="flex flex-col gap-3">
+        {free && card(free, true)}
+        <div className="grid gap-3 sm:grid-cols-3">{middle.map((p) => card(p))}</div>
+        {top !== free && card(top, true)}
       </div>
       {error && <p className="mt-5 text-center text-[13px] text-[#ff8a6b]">{error}</p>}
     </>
