@@ -1,14 +1,21 @@
-import { ArrowRight, Download, FolderInput, ShieldOff, SquareTerminal } from 'lucide-react';
+import { ArrowRight, Download, SquareTerminal } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 import { Command } from '@/components/Command';
+import { ImportDemo } from '@/components/demo/ImportDemo';
+import { RulesDemo } from '@/components/demo/RulesDemo';
+import { Stage } from '@/components/demo/Stage';
+import { WorkDemo } from '@/components/demo/WorkDemo';
 import { Footer } from '@/components/Footer';
 import { Nav } from '@/components/Nav';
+import { Key, Showcase } from '@/components/Showcase';
 import city from '@/paintings/city.webp';
 import creation from '@/paintings/creation.webp';
 import forest from '@/paintings/forest.webp';
+import money from '@/paintings/money.webp';
+import riot from '@/paintings/riot.webp';
 import { COLUMN, DOWNLOAD_MAC, EXTERNAL, INSTALL } from '@/lib/site';
 
 export default function Home() {
@@ -16,8 +23,11 @@ export default function Home() {
     <>
       <Hero />
       <main>
-        <NoRefusals />
-        <Facts />
+        <div className="space-y-28 pt-16 sm:space-y-40 sm:pt-24">
+          <NoRefusals />
+          <Defect />
+          <YourRules />
+        </div>
         <Install />
       </main>
       <Footer />
@@ -81,63 +91,86 @@ function Hero() {
 
 function NoRefusals() {
   return (
-    <section className={`${COLUMN} pt-20 sm:pt-28`}>
-      <h2 className="max-w-[640px] text-[34px] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[46px]">
-        No refusals. No lectures.
-        <br />
-        <span className="text-smoke">Just the work.</span>
-      </h2>
-      <p className="mt-5 max-w-[470px] text-[15px] leading-relaxed text-smoke">
-        The refusals are cut out of its models, so it does what you ask: it reads the code, makes the change, runs it, and checks that it worked.
-      </p>
-      <figure className="relative mt-12 overflow-hidden rounded-[28px] border border-white/[0.06]">
-        <Image
-          src={city}
-          alt="A city burning under a red sun"
-          placeholder="blur"
-          quality={80}
-          sizes="(min-width: 1080px) 1016px, 100vw"
-          className="aspect-[16/10] w-full object-cover sm:aspect-[16/9]"
-        />
-        <figcaption className="absolute inset-x-0 bottom-0 bg-[linear-gradient(to_top,rgb(12_8_6/0.85),transparent)] px-6 pb-5 pt-16 text-[13px] text-ash/80 sm:px-8 sm:pb-7">
-          Qwen3.5, GLM-5.2 and GLM-5.3, abliterated. Up to a million tokens of context.
-        </figcaption>
-      </figure>
-    </section>
+    <Showcase
+      title={
+        <>
+          No refusals.
+          <br />
+          No lectures.
+        </>
+      }
+      stage={
+        <Stage painting={money} alt="Hundred-dollar bills burning">
+          <WorkDemo />
+        </Stage>
+      }
+      hint={
+        <>
+          Try it: type anything and press <Key>Enter</Key>, or pick one of the ideas under the box. Open a line it ran to see what it changed.
+        </>
+      }
+    >
+      <p>The refusals are cut out of its models, so the tokens you pay for go into the work. It reads the code, makes the change, runs it, and checks that it worked.</p>
+    </Showcase>
   );
 }
 
-function Fact({ icon, title, children }: { icon: ReactNode; title: string; children: ReactNode }) {
+function Defect() {
   return (
-    <div>
-      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.05] text-smoke">{icon}</div>
-      <h3 className="mt-4 text-[15px] font-medium">{title}</h3>
-      <p className="mt-1 text-[13.5px] leading-relaxed text-smoke">{children}</p>
-    </div>
+    <Showcase
+      flip
+      title={
+        <>
+          Defect.
+          <br />
+          Bring your chats.
+        </>
+      }
+      stage={
+        <Stage painting={riot} alt="A crowd storming a burning city">
+          <ImportDemo />
+        </Stage>
+      }
+      hint={<>Try it: press Import, then open one of the chats it brought over and keep going.</>}
+    >
+      <p>caveira picks up your Claude Code, Codex and OpenCode chats where you left them. The terminal and the app share every one.</p>
+    </Showcase>
   );
 }
 
-function Facts() {
+function YourRules() {
   return (
-    <section className={`${COLUMN} grid gap-10 pt-20 sm:grid-cols-3 sm:gap-8 sm:pt-24`}>
-      <Fact icon={<SquareTerminal size={16} />} title="Terminal and desktop">
-        One agent and one set of chats, in both. Start in one, finish in the other.
-      </Fact>
-      <Fact icon={<FolderInput size={16} />} title="Bring your chats">
-        Picks up your Claude Code, Codex and OpenCode chats where you left them.
-      </Fact>
-      <Fact icon={<ShieldOff size={16} />} title="Your call">
-        It asks before it runs a command or edits a file, or it doesn&rsquo;t. Switch with a key.
-      </Fact>
-    </section>
+    <Showcase
+      title={
+        <>
+          Open models.
+          <br />
+          Your rules.
+        </>
+      }
+      stage={
+        <Stage painting={city} alt="A city burning under a red sun">
+          <RulesDemo />
+        </Stage>
+      }
+      hint={
+        <>
+          Try it: switch the model or the effort, flip permissions with <Key>⇧ Tab</Key>, then send something. You can drag the window by its top bar, too.
+        </>
+      }
+    >
+      <p>Abliterated Qwen3.5, GLM-5.2 and GLM-5.3, with up to a million tokens of context. You set how hard it thinks, and whether it asks before it acts.</p>
+    </Showcase>
   );
 }
 
 function Install() {
   return (
-    <section id="install" className="relative isolate mt-24 scroll-mt-4 overflow-hidden py-28 sm:mt-32 sm:py-40">
+    <section id="install" className="relative isolate mt-16 scroll-mt-4 overflow-hidden pb-28 pt-56 sm:mt-24 sm:pb-40 sm:pt-72">
       <Image src={forest} alt="" fill placeholder="blur" quality={80} sizes="100vw" className="-z-20 object-cover object-[50%_60%]" />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,var(--color-ink),rgb(12_8_6/0.4)_30%,rgb(12_8_6/0.45)_70%,var(--color-ink))]" />
+      {/* A long, eased fade in from the page above, so the forest rises out
+          of the dark rather than starting at a line. */}
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,var(--color-ink),rgb(12_8_6/0.97)_8%,rgb(12_8_6/0.9)_16%,rgb(12_8_6/0.78)_24%,rgb(12_8_6/0.62)_32%,rgb(12_8_6/0.48)_41%,rgb(12_8_6/0.4)_50%,rgb(12_8_6/0.42)_72%,rgb(12_8_6/0.7)_88%,var(--color-ink))]" />
 
       <div className={COLUMN}>
         <h2 className="text-center text-[34px] font-semibold tracking-[-0.04em] sm:text-[46px]">Get caveira</h2>

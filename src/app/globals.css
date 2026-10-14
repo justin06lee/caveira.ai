@@ -12,6 +12,20 @@
   --color-smoke: #a8978a;
   --color-cinder: #6f6158;
   --color-ember: #ff7a3d;
+
+  /* The desktop app's own light theme, for the replica windows. */
+  --color-app: #f8f7f2;
+  --color-app-side: #f1f0ea;
+  --color-app-surface: #fdfdfb;
+  --color-app-sunken: #efeee8;
+  --color-app-line: #e3e2db;
+  --color-app-line-strong: #d4d3cb;
+  --color-app-text: #1c1c1a;
+  --color-app-muted: #6d6c67;
+  --color-app-faint: #a4a39d;
+  --color-app-green: #4d7a53;
+  --color-app-red: #b0473d;
+  --color-app-amber: #946f1f;
 }
 
 html {
@@ -63,4 +77,76 @@ html {
   .rise {
     animation: none;
   }
+}
+
+/* The app's thinking skull: each dot lands with a flare, holds, and goes,
+   over a faint ghost of the whole shape. */
+.skull circle {
+  fill: var(--color-app-text);
+  opacity: calc(var(--o) * 0.2);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: skull-dot 2.8s cubic-bezier(0.2, 0.7, 0.2, 1) infinite both;
+}
+.skull .o {
+  --o: 0.92;
+}
+.skull .f1 {
+  --o: 0.14;
+}
+.skull .f2 {
+  --o: 0.2;
+}
+.skull .f3 {
+  --o: 0.3;
+}
+.skull .f4 {
+  --o: 0.42;
+}
+@keyframes skull-dot {
+  0% {
+    opacity: calc(var(--o) * 0.2);
+    transform: scale(0.6);
+  }
+  7% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+  16%,
+  70% {
+    opacity: var(--o);
+    transform: scale(1);
+  }
+  82%,
+  100% {
+    opacity: calc(var(--o) * 0.2);
+    transform: scale(0.6);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skull circle {
+    animation: none;
+    opacity: var(--o);
+  }
+}
+
+/* A line of the replica's transcript arriving. */
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.appear {
+  animation: appear 0.28s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

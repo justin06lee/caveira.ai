@@ -15,6 +15,8 @@
 
 It is a Next.js app (App Router) with Tailwind, Drizzle over libSQL (a local SQLite file in development, Turso in production) and Stripe Billing, meant for Vercel.
 
+The landing page opens on the skull between two hands and closes on the burning forest. In between, three paintings serve as desktop wallpapers, each with a live replica of the caveira app on it that you can type into and drag around: a turn that reads, edits and runs code; the import of Claude Code, Codex and OpenCode chats; and the model, effort and permission menus, with an approval card when it asks. The replicas are in `src/components/demo/`, drawn from the desktop app's own palette and layout. Their turns are scripted, and nothing in them talks to a model.
+
 ## Develop
 
 ```sh
