@@ -16,7 +16,7 @@ import creation from '@/paintings/creation.webp';
 import forest from '@/paintings/forest.webp';
 import money from '@/paintings/money.webp';
 import riot from '@/paintings/riot.webp';
-import { COLUMN, DOWNLOAD_MAC, EXTERNAL, INSTALL } from '@/lib/site';
+import { COLUMN, DOWNLOAD_MAC, INSTALL } from '@/lib/site';
 
 export default function Home() {
   return (
@@ -66,7 +66,6 @@ function Hero() {
         <div className="rise mt-9 flex flex-wrap items-center justify-center gap-2.5 [animation-delay:600ms]">
           <a
             href={DOWNLOAD_MAC}
-            {...EXTERNAL}
             className="inline-flex h-11 items-center gap-2 rounded-full bg-ash pl-5 pr-6 text-[14px] font-medium text-ink transition hover:bg-white"
           >
             <Download size={16} /> Download for macOS
@@ -176,18 +175,21 @@ function Install() {
         <h2 className="text-center text-[34px] font-semibold tracking-[-0.04em] sm:text-[46px]">Get caveira</h2>
         <p className="mt-3 text-center text-[14.5px] text-ash/75">Then sign in, and you&rsquo;re working.</p>
 
-        <div className="mx-auto mt-12 grid max-w-[880px] gap-4 md:grid-cols-2">
+        {/* The terminal's card is the wider, so its command shows whole. */}
+        <div className="mx-auto mt-12 grid max-w-[880px] gap-4 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
           <Card title="The app" note="For macOS 13 or later.">
             <a
               href={DOWNLOAD_MAC}
-              {...EXTERNAL}
               className="mt-5 inline-flex h-10 items-center gap-2 rounded-full bg-ash pl-4 pr-5 text-[13px] font-medium text-ink transition hover:bg-white"
             >
               <Download size={15} /> Download for macOS
             </a>
             <p className="mt-5 text-[13px] leading-relaxed text-smoke">Open it, press Sign in, and finish in your browser.</p>
+            <p className="mt-2 text-[12px] leading-relaxed text-cinder">
+              The first time, macOS asks: in System Settings, open Privacy &amp; Security and choose Open Anyway.
+            </p>
           </Card>
-          <Card title="The terminal" note="macOS and Linux. Needs Go and bun.">
+          <Card title="The terminal" note="macOS and Linux.">
             <Command>{INSTALL}</Command>
             <p className="mt-4 text-[13px] leading-relaxed text-smoke">
               Run <code className="rounded-md bg-white/[0.07] px-1.5 py-0.5 font-mono text-[12px] text-ash">caveira</code> in a project and type{' '}
