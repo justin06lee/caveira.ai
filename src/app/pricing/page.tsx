@@ -7,7 +7,7 @@ import { PlanGrid } from '@/components/PlanGrid';
 import { currentViewer, planOf } from '@/lib/auth';
 import { planById, PLANS } from '@/lib/plans';
 import { COLUMN } from '@/lib/site';
-import forest from '@/paintings/forest.webp';
+import money from '@/paintings/money.webp';
 
 export const metadata: Metadata = { title: 'Pricing' };
 
@@ -19,7 +19,7 @@ export default async function Pricing({ searchParams }: PageProps<'/pricing'>) {
   return (
     <div className="relative isolate">
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] overflow-hidden [mask-image:linear-gradient(to_bottom,black,transparent)]">
-        <Image src={forest} alt="" fill priority placeholder="blur" quality={80} sizes="100vw" className="object-cover object-[50%_30%] opacity-35" />
+        <Image src={money} alt="" fill priority placeholder="blur" quality={80} sizes="100vw" className="object-cover object-[50%_30%] opacity-35" />
       </div>
       <Nav current="pricing" />
       <main className={`${COLUMN} pb-28 pt-12 sm:pt-16`}>
